@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_javatimurkaeva381505" default="compile.module.javatimurkaeva381505">
+  <dirname property="module.javatimurkaeva381505.basedir" file="${ant.file.module_javatimurkaeva381505}"/>
+  
+  <property name="module.jdk.home.javatimurkaeva381505" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.javatimurkaeva381505" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.javatimurkaeva381505" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.javatimurkaeva381505" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="javatimurkaeva381505.output.dir" value="${module.javatimurkaeva381505.basedir}/out/production/javaTimurkaeva381505"/>
+  <property name="javatimurkaeva381505.testoutput.dir" value="${module.javatimurkaeva381505.basedir}/out/test/javaTimurkaeva381505"/>
+  
+  <path id="javatimurkaeva381505.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="javatimurkaeva381505.module.production.classpath">
+    <path refid="${module.jdk.classpath.javatimurkaeva381505}"/>
+  </path>
+  
+  <path id="javatimurkaeva381505.runtime.production.module.classpath">
+    <pathelement location="${javatimurkaeva381505.output.dir}"/>
+  </path>
+  
+  <path id="javatimurkaeva381505.module.classpath">
+    <path refid="${module.jdk.classpath.javatimurkaeva381505}"/>
+    <pathelement location="${javatimurkaeva381505.output.dir}"/>
+  </path>
+  
+  <path id="javatimurkaeva381505.runtime.module.classpath">
+    <pathelement location="${javatimurkaeva381505.testoutput.dir}"/>
+    <pathelement location="${javatimurkaeva381505.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.javatimurkaeva381505">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.javatimurkaeva381505">
+    <patternset refid="excluded.from.module.javatimurkaeva381505"/>
+  </patternset>
+  
+  <path id="javatimurkaeva381505.module.sourcepath">
+    <dirset dir="${module.javatimurkaeva381505.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.javatimurkaeva381505" depends="compile.module.javatimurkaeva381505.production,compile.module.javatimurkaeva381505.tests" description="Compile module javaTimurkaeva381505"/>
+  
+  <target name="compile.module.javatimurkaeva381505.production" depends="register.custom.compilers" description="Compile module javaTimurkaeva381505; production classes">
+    <mkdir dir="${javatimurkaeva381505.output.dir}"/>
+    <javac2 destdir="${javatimurkaeva381505.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.javatimurkaeva381505}/javac">
+      <compilerarg line="${compiler.args.javatimurkaeva381505}"/>
+      <bootclasspath refid="javatimurkaeva381505.module.bootclasspath"/>
+      <classpath refid="javatimurkaeva381505.module.production.classpath"/>
+      <src refid="javatimurkaeva381505.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.javatimurkaeva381505"/>
+    </javac2>
+    
+    <copy todir="${javatimurkaeva381505.output.dir}">
+      <fileset dir="${module.javatimurkaeva381505.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.javatimurkaeva381505.tests" depends="register.custom.compilers,compile.module.javatimurkaeva381505.production" description="compile module javaTimurkaeva381505; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.javatimurkaeva381505" description="cleanup module">
+    <delete dir="${javatimurkaeva381505.output.dir}"/>
+    <delete dir="${javatimurkaeva381505.testoutput.dir}"/>
+  </target>
+</project>
